@@ -75,11 +75,12 @@ export default {
     }
   },
   mounted() {
+    // Generate QR Object
     this.qr = new QRCode(document.getElementById('qrcode'), {
-        text: 'Steva',
-        colorDark: '#ffffff', // base.css --vt-white
-        colorLight: '#2f6196' // base.css --vt-blue
-      })
+      text: 'Steva',
+      colorDark: '#ffffff', // base.css --vt-white
+      colorLight: '#2f6196' // base.css --vt-blue
+    })
   },
   components: { ChooseLocation }
 }

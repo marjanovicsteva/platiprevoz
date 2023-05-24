@@ -1,6 +1,7 @@
 {
     "name": "PlatiPrevoz.com",
     "short_name": "Plati Prevoz",
+    "start_url": "/",
     "icons": [
         {
             "src": "/favicon/android-chrome-192x192.png",
@@ -15,5 +16,6 @@
     ],
     "theme_color": "#2f6196",
     "background_color": "#2f6196",
-    "display": "standalone"
+    "display": "standalone",
+    "orientation": "portrait"
 }

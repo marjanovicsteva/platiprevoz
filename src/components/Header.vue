@@ -22,11 +22,12 @@ import IconClose from './icons/IconClose.vue';
                     <a href="https://bgnaplata.rs/">BG Naplata</a>
                     <a href="https://bgnaplata.rs/prodajna-mesta/">Prodajna mesta</a>
                 </div>
+                <div id="linkovi">
+                    <a href="https://github.com/marjanovicsteva">GitHub</a>
+                    <a href="https://www.linkedin.com/in/stevan-marjanovic/">LinkedIn</a>
+                </div>
             </div>
-            <div id="linkovi">
-                <a href="https://github.com/marjanovicsteva">GitHub</a>
-                <a href="https://www.linkedin.com/in/stevan-marjanovic/">LinkedIn</a>
-            </div>
+            
         </nav>
     </div>
 </template>
@@ -63,6 +64,7 @@ nav {
     transition-duration: 0.5s;
     display: flex;
     flex-direction: column;
+    align-items: end;
     justify-content: space-between;
 }
 
@@ -85,8 +87,9 @@ nav {
 #linkovi {
     display: flex;
     flex-direction: row;
+    justify-content: end;
     column-gap: 20px;
-    align-self: end;
+    margin-bottom: 70px;
 }
 
 #linkovi a {
