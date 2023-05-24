@@ -6,7 +6,7 @@ import IconClose from './icons/IconClose.vue';
 <template>
     <div>
         <header>
-            <span>PlatiVoznju</span>
+            <span class="logo">PlatiPrevoz.com</span>
 
             <span id="otvori" @click="toggleMenu">
                 <IconMenu :size="25"></IconMenu>
@@ -106,5 +106,10 @@ nav {
 
 .open {
     left: 0;
+}
+
+.logo {
+    font-style: italic;
+    font-weight: bold;
 }
 </style>
