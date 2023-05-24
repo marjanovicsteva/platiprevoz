@@ -1,5 +1,9 @@
+<script setup>
+import IconDown from './icons/IconDown.vue';
+</script>
+
 <template>
-    <div>
+    <div class="location-picker">
         <div @click="toggleChooseLocation" @change="handleChange">
             <select v-if="izaberi_lokaciju" id="izaberi-lokaciju" v-model="oblast">
                 <option data-zona="C">Sve</option>
@@ -15,7 +19,7 @@
                 <option data-zona="B">Barajevo</option>
                 <option data-zona="B">Sopot</option>
             </select>
-            <h1 v-else>{{ oblast }}</h1>
+            <h1 v-else>{{ oblast }} <IconDown color="#2f6196"></IconDown></h1>
         </div>
     </div>
 </template>
@@ -92,3 +96,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .location-picker {
+        cursor: pointer;
+    }
+</style>
