@@ -1,5 +1,5 @@
 <template>
-    <div class="circle" @click="handleClick">
+    <div class="container" :class="type" @click="handleClick">
         <div class="vreme">
             {{ opcija.tekst }}
         </div>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-    props: [ 'opcija', 'zona', 'cena' ],
+    props: [ 'opcija', 'zona', 'cena', 'type' ],
     methods: {
         handleClick() {
             if (window.is_mobile()) {
@@ -26,13 +26,10 @@ export default {
 </script>
 
 <style scoped>
-    .circle {
-        width: 150px;
-        height: 150px;
+    .container {
         background-color: var(--color-accent);
         color: var(--vt-text);
         text-decoration: none;
-        border-radius: 50%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -42,7 +39,13 @@ export default {
         transition-duration: 0.2s;
     }
 
-    .vreme {
+    .primary {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+    }
+
+    .primary .vreme {
         font-size: 2rem;
         font-weight: 200;
         line-height: 1;
@@ -50,12 +53,28 @@ export default {
         margin-top: 10px;
     }
 
-    .cena {
+    .primary .cena {
         font-weight: 200;
         color: lightgrey;
     }
 
-    .circle:hover {
+    .primary .circle:hover {
         filter: brightness(0.8)
+    }
+
+    .secondary {
+        text-align: center;
+        width: 100%;
+        padding: 10px 10px;
+    }
+
+    .secondary .vreme {
+        white-space: nowrap;
+    }
+
+    .secondary .cena {
+        white-space: nowrap;
+        font-weight: 200;
+        font-size: 0.75rem;
     }
 </style>

@@ -8,11 +8,15 @@ import IconClose from '../components/icons/IconClose.vue';
   <main>
     <ChooseLocation @locationChanged="handleLocationChange"></ChooseLocation>
 
-    <div id="options">
-      <CirclePay v-for="option in options" :opcija="option" :zona="zona" :cena="cene[zona][option.vreme]" @showQR="showQR"></CirclePay>
+    <div id="all-options">
+      <CirclePay type="primary" :opcija="primaryOption" :zona="zona" :cena="cene[zona][primaryOption.vreme]"></CirclePay>
+      
+      <div id="options">
+        <CirclePay v-for="option in options.filter(o => o.vreme !== primary)" type="secondary" :opcija="option" :zona="zona" :cena="cene[zona][option.vreme]" @showQR="showQR"></CirclePay>
+      </div>
     </div>
 
-    <div id="popup" class="popup begaj">
+    <div v-if="!isMobile" id="popup" class="popup begaj">
       <div class="popup-header">
         <h2>Scan</h2>
 
@@ -58,8 +62,17 @@ export default {
         }
       },
       zona: 'A',
-      qr: null
+      qr: null,
+      primary: 90
     };
+  },
+  computed: {
+    primaryOption() {
+      return this.options.find(option => option.vreme === this.primary)
+    },
+    isMobile() {
+      return window.is_mobile()
+    }
   },
   methods: {
     handleLocationChange(data) {
@@ -76,11 +89,13 @@ export default {
   },
   mounted() {
     // Generate QR Object
-    this.qr = new QRCode(document.getElementById('qrcode'), {
-      text: 'Steva',
-      colorDark: '#ffffff', // base.css --vt-white
-      colorLight: '#2f6196' // base.css --vt-blue
-    })
+    if (!window.is_mobile()) {
+      this.qr = new QRCode(document.getElementById('qrcode'), {
+        text: 'Steva',
+        colorDark: '#ffffff', // base.css --vt-white
+        colorLight: '#2f6196' // base.css --vt-blue
+      })
+    }
   },
   components: { ChooseLocation }
 }
@@ -97,15 +112,42 @@ export default {
     margin-top: 70px;
   }
 
+  /* OPTIONS */
   #options {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    row-gap: 20px;
-    column-gap: 20px;
+    justify-content: space-between;
+    column-gap: 10px;
+    width: 100%;
     flex-wrap: wrap;
+    row-gap: 10px;
+    line-height: 1.2;
   }
 
+  #all-options {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+  }
+
+  .primary {
+    height: 200px;
+    width: 200px;
+  }
+
+  .secondary {
+    text-align: center;
+    width: 100%;
+    padding: 10px 10px;
+    border: 2px solid var(--color-accent);
+    background-color: transparent;
+    color: var(--color-accent);
+    flex: 1 1 0;
+  }
+
+  /* SCAN QR POPUP */
   .popup {
     position: fixed;
     left: 20px;
