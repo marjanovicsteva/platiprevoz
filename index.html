@@ -23,7 +23,12 @@
     <script src="/qrcode.js"></script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js')
+        window.addEventListener('load', function() {
+          console.log('Service Workers supported.')
+          navigator.serviceWorker.register('/sw.js')
+        })
+      } else {
+        console.warn('Service Workers not supported.')
       }
     </script>
   </head>
@@ -41,7 +46,6 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script> -->
-
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
