@@ -1,4 +1,6 @@
 const staticCacheName = 'site-static'
+const dynamicCacheName = 'site-dynamic'
+
 const assets = [
     '/',
     '/index.html',
@@ -11,6 +13,7 @@ const assets = [
     '/src/components/ChooseLocation.vue',
     '/src/components/CirclePay.vue',
     '/src/components/Header.vue',
+    '/src/components/Footer.vue',
     '/src/components/icons/IconClose.vue',
     '/src/components/icons/IconMenu.vue',
     '/src/components/icons/IconDown.vue',
@@ -46,9 +49,15 @@ self.addEventListener('fetch', event => {
     // console.log('fetch event', event)
     event.respondWith(
         caches.match(event.request).then(cache => {
-            return cache || fetch(event.request)
-        }).catch(() => {
-            return caches.match('/') // ovde ide fajl koji prikazuje offline
+            return cache || fetch(event.request).then(res => {
+                return caches.open(dynamicCacheName).then(cache => {
+                    if (event.request.url.startsWith('http')) {
+                        cache.put(event.request.url, res.clone())
+                    }
+                    
+                    return res
+                })
+            })
         })
     )
 })
