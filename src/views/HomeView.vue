@@ -12,7 +12,7 @@ import IconClose from '../components/icons/IconClose.vue';
       <CirclePay v-for="option in options" :opcija="option" :zona="zona" :cena="cene[zona][option.vreme]" @showQR="showQR"></CirclePay>
     </div>
 
-    <div id="popup" class="popup begaj">
+    <div v-if="!is_mobile" id="popup" class="popup begaj">
       <div class="popup-header">
         <h2>Scan</h2>
 
@@ -60,6 +60,11 @@ export default {
       zona: 'A',
       qr: null
     };
+  },
+  computed: {
+    is_mobile() {
+      return window.is_mobile()
+    }
   },
   methods: {
     handleLocationChange(data) {

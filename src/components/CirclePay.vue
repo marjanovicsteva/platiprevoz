@@ -27,8 +27,8 @@ export default {
 
 <style scoped>
     .circle {
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        height: 100px;
         background-color: var(--color-accent);
         color: var(--vt-text);
         text-decoration: none;
@@ -43,7 +43,7 @@ export default {
     }
 
     .vreme {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 200;
         line-height: 1;
 
@@ -52,10 +52,26 @@ export default {
 
     .cena {
         font-weight: 200;
+        font-size: 0.8rem;
         color: lightgrey;
     }
 
     .circle:hover {
         filter: brightness(0.8)
     }
+
+    @media only screen and (min-device-width: 340px) {
+        .circle {
+            width: 150px;
+            height: 150px;
+        }
+
+        .vreme {
+            font-size: 2rem;
+        }
+
+        .cena {
+            font-size: 1rem;
+        }
+    } 
 </style>
