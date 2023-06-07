@@ -1,5 +1,5 @@
 <template>
-    <div class="circle" @click="handleClick">
+    <div class="circle" @click="handleClick" :data-goatcounter-click="`plati-${zona}-${opcija.vreme}`">
         <div class="vreme">
             {{ opcija.tekst }}
         </div>
