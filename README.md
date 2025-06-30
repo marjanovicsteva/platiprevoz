@@ -1,6 +1,6 @@
-# bg-plus
+# PlatiPrevoz
 
-This template should help get you started developing with Vue 3 in Vite.
+This application was made to make it easier to pay for Belgrade public transport before it was free and before the official app was released. I automatically generates QR code on desktop and send an SMS on mobile (which was the only method of payment).
 
 ## Recommended IDE Setup
 
